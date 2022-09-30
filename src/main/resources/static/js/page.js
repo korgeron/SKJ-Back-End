@@ -1,0 +1,1 @@
+document.querySelector('.page').style.background = "url('~/images/content-screen.jpg')"

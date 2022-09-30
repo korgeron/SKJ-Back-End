@@ -1,0 +1,45 @@
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.page {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+.content {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    padding-top: 5vh;
+}
+
+
+/*Todo: GREETING MESSAGE*/
+.greeting {
+    display: flex;
+    justify-content: center;
+    animation-name: resize;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    transition: all 1s;
+    color: white;
+    font-size: 3vh;
+}
+
+@keyframes resize {
+    from {
+        scale: 0;
+    }
+    to {
+        scale: 1;
+    }
+}

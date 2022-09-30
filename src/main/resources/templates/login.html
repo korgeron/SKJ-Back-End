@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head('Portal | Login')"></head>
+<body>
+
+<img class="page" th:src="@{~/images/content-screen.png}" alt="">
+
+<div class="loginContent">
+    <form class="loginForm" th:action="@{/login}" method="post">
+        <label for="username">USERNAME</label>
+        <input id="username" type="text" name="username" autofocus>
+        <label for="password">PASSWORD</label>
+        <input id="password" type="password" name="password">
+        <input name="_csrf" type="hidden" th:each="cookie: ${#httpServletRequest.cookies}" th:if="${cookie.name == 'Idea-4c161dd1'}" th:value="${cookie.value}">
+        <button type="submit">Login</button>
+    </form>
+
+
+</div>
+
+
+</body>
+</html>
