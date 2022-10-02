@@ -6,7 +6,7 @@
 <img class="page" th:src="@{~/images/content-screen.png}" alt="">
 
 <div class="loginContent">
-    <form class="loginForm" th:action="@{/login}" method="post">
+    <form class="mainForm" th:action="@{/login}" method="post">
         <label for="username">USERNAME</label>
         <input id="username" type="text" name="username" autofocus>
         <label for="password">PASSWORD</label>
@@ -14,8 +14,6 @@
         <input name="_csrf" type="hidden" th:each="cookie: ${#httpServletRequest.cookies}" th:if="${cookie.name == 'Idea-4c161dd1'}" th:value="${cookie.value}">
         <button type="submit">Login</button>
     </form>
-
-
 </div>
 
 

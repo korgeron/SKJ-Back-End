@@ -1,10 +1,13 @@
 package com.skj.skjapi.controller;
 
 import com.skj.skjapi.models.Employee;
+import com.skj.skjapi.models.EmployeePermissions;
 import com.skj.skjapi.repos.Employees;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +26,9 @@ public class PortalController {
     private PasswordEncoder encoder;
 
     @GetMapping()
-    public String landingHTML() {
+    public String landingHTML(Model model) {
+        EmployeePermissions employee = (EmployeePermissions) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", employee.getUsername().toUpperCase());
         return "index";
     }
 
@@ -40,6 +45,25 @@ public class PortalController {
     public String logoutHandler(HttpSession session) {
         session.invalidate();
         return "redirect:/login";
+    }
+
+    @GetMapping("employee/create")
+    public String createEmployeeHTML(){
+        return "employees/create-employee";
+    }
+
+    @PostMapping("employee/create")
+    public String createEmployee(String username, String password, String role){
+        System.out.println(username);
+        System.out.println(password);
+        System.out.println(role);
+        if (!username.equals("") && !password.equals("") && role.equals("EMPLOYEE")){
+            employeeRoster.save(new Employee(username, encoder.encode(password), role));
+            return "redirect:/";
+        } else {
+            return "redirect:/employee/create";
+        }
+
     }
 
 }
