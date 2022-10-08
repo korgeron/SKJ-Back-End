@@ -26,6 +26,8 @@ public class EmployeePermissions implements UserDetails {
         return List.of(new SimpleGrantedAuthority(this.role));
     }
 
+    public String getRole(){return this.role;}
+
     @Override
     public String getPassword() {
         return this.password;

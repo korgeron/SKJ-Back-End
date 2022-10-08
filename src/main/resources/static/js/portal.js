@@ -1,16 +1,62 @@
-console.log('linked!')
+"use strict";
 
-document.querySelectorAll('.panels').forEach((panel, i) => {
-    panel.addEventListener('click', () => {
-        panel.style.background = "rgba(211, 211, 211, 0.9)"
-        console.log(i)
-        if (i === 0) {
-            window.location.assign("/employee/create")
-        }
+
+
+//Todo: CHECK TO SEE IF USER IS ADMIN OR EMPLOYEE
+const getUsername = document.querySelector('.greeting').innerHTML
+
+const username = getUsername.split(" ")
+console.log(username);
+let isAdmin = false
+
+if (username[1] === "ADMIN") {
+    isAdmin = true
+}
+
+
+
+//Todo: SET BUTTON EVENTS (DIFFERENT EVENTS FOR ADMIN) FOR EMPLOYEE NAVIGATION
+if (isAdmin === true){
+    document.querySelectorAll('.panels').forEach((panel, i) => {
+        panel.addEventListener('click', () => {
+            panel.style.background = "rgba(211, 211, 211, 0.9)"
+
+            switch (true){
+                case i === 0:
+                    window.location.assign("/employee/create")
+                    break;
+                case i === 1:
+                    window.location.assign("/shop")
+                    break;
+                case i === 2:
+                    window.location.assign("/messages")
+                    break;
+            }
+
+        })
 
     })
+} else {
+    document.querySelectorAll('.panels').forEach((panel, i) => {
+        panel.addEventListener('click', () => {
+            panel.style.background = "rgba(211, 211, 211, 0.9)"
 
-})
+            switch (true){
+                case i === 0:
+                    window.location.assign("/shop")
+                    break;
+                case i === 1:
+                    window.location.assign("/messages")
+                    break;
+            }
+
+
+        })
+
+    })
+}
+
+
 
 let logout = document.querySelector('.logoutBtn')
 if (logout != null) {

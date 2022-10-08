@@ -23,6 +23,7 @@
 
 /*Todo: CONTENT PANEL*/
 .content-panel {
+    padding: 1em;
     visibility: hidden;
     overflow-y: scroll;
     scroll-behavior: smooth;
@@ -43,29 +44,13 @@
     justify-content: center;
 }
 
-@keyframes open {
-    from {
-        visibility: hidden;
-        height: 0;
-        width: 0;
-    }
-    to {
-        height: 90%;
-        width: 90%;
-        visibility: visible;
-    }
-
-}
-
 /*Todo: Individual Panels*/
 .panels {
     height: 30%;
     width: 90%;
-    /*height: 50%;*/
-    /*width: 30%;*/
+    margin: 2vh;
     border: 1px outset antiquewhite;
     border-radius: 1em;
-    margin: 2%;
     animation-name: show;
     animation-delay: 1.1s;
     animation-duration: 1s;
@@ -99,18 +84,6 @@
     margin-bottom: 2%;
 }
 
-@keyframes show {
-    from {
-        /*display: none;*/
-        visibility: hidden;
-    }
-    to {
-        /*display: flex;*/
-        visibility: visible;
-    }
-}
-
-
 /*Todo: GREETING MESSAGE*/
 .greeting {
     display: flex;
@@ -124,11 +97,207 @@
 
 }
 
+
+.loginContent {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainForm {
+    height: 60vh;
+    width: 70vw;
+    min-height: 30vh;
+    min-width: 40vw;
+    display: flex;
+    flex-direction: column;
+    padding-top: 5vh;
+    justify-content: flex-start;
+    align-items: center;
+    background: rgba(119, 136, 153, 0.31);
+    border-radius: 1em;
+    border: 1px inset rgba(205, 92, 92, 0.49);
+    animation-name: resize;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    transition: all 1s;
+    zoom: unset;
+}
+
+.mainForm > label {
+    padding: 3vh 0 3vh 0;
+    font-size: 3vh;
+}
+
+.mainForm > input {
+    height: 5vh;
+    width: 80%;
+    color: black;
+    font-size: 3vh;
+    zoom: unset;
+}
+.mainForm > button{
+    margin-top: 7vh;
+    height: 5vh;
+    width: 80%;
+    color: black;
+    font-size: 3vh;
+}
+
+.logoutBtn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 2vh 2vw 0 0;
+    background: none;
+    border: 1px solid floralwhite;
+    height: 5vh;
+    width: 15vw;
+    border-radius: 1em;
+    font-size: 1.5vh;
+    animation-name: resize;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    transition: all 1s;
+}
+
+.backBtn{
+    position: relative;
+    margin-top: 5vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: none;
+    border: 1px solid floralwhite;
+    height: 10vh;
+    width: 50vw;
+    border-radius: 1em;
+    font-size: 1.5vh;
+    animation-name: resize;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    transition: all 1s;
+}
+
+
+.errorMessage{
+    position: relative;
+    visibility: hidden;
+    color: red;
+    font-size: 2vh;
+    text-shadow: black;
+    animation-name: hideNshow;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+
+/*Styling form for online shop*/
+.subForm{
+    padding: 1em;
+    height: 90%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: rgba(119, 136, 153, 0.31);
+    border: 1px inset rgba(205, 92, 92, 0.49);
+    border-radius: 1em;
+    animation-name: resize;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    transition: all 1s;
+}
+
+.subForm > label{
+    padding: 0 0 2vh 0;
+    font-size: 4vh;
+    font-weight: bold;
+}
+
+.subForm > input{
+    height: 5vh;
+    width: 80%;
+    color: black;
+    font-size: 3vh;
+    zoom: unset;
+}
+
+#size , #category{
+    height: 5vh;
+    width: 80%;
+    color: black;
+    font-size: 2.5vh;
+
+}
+
+#size > option, #category > option{
+    color: black;
+}
+
+.subForm > button{
+    width: 80%;
+    margin-top: 2vh;
+    height: 5vh;
+    color: black;
+    font-size: 3vh;
+}
+
+/*Keyframes for animations*/
+@keyframes open {
+    from {
+        visibility: hidden;
+        height: 0;
+        width: 0;
+    }
+    to {
+        height: 90%;
+        width: 90%;
+        visibility: visible;
+    }
+
+}
+
 @keyframes resize {
     from {
         scale: 0;
     }
     to {
         scale: 1;
+    }
+}
+
+@keyframes hideNshow {
+    from {
+        visibility: visible;
+        scale: 0;
+    }
+    to {
+        scale: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes show {
+    from {
+        /*display: none;*/
+        visibility: hidden;
+    }
+    to {
+        /*display: flex;*/
+        visibility: visible;
+    }
+}
+
+@media all and (min-width: 1024px) and (max-width: 1440px) {
+    .content{
+        height: auto;
+    }
+    .page{
+        height: 110%;
     }
 }
