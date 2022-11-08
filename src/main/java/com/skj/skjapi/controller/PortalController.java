@@ -68,7 +68,7 @@ public class PortalController {
     }
 
     @PostMapping("employee/create")
-    public String createEmployee(String username, String password, String role) {
+    public String createEmployee(String username, String password, String role, Model model) {
         System.out.println(username);
         System.out.println(password);
         System.out.println(role);

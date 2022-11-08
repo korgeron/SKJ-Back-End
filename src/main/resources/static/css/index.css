@@ -6,13 +6,19 @@
 }
 
 .page {
-    position: absolute;
+    /*position: absolute;*/
     height: 100vh;
     width: 100vw;
+    background-image: url(../images/content-screen.png);
+    background-size: cover;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .content {
-    position: relative;
+    /*position: relative;*/
     height: 100vh;
     width: 100vw;
     padding-top: 5vh;
@@ -117,7 +123,6 @@
 .product-content{
     grid-area: content;
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
     margin-right: 2vw;
     overflow-y: scroll;
@@ -140,8 +145,8 @@
 
 .loginContent {
     position: relative;
-    height: 100vh;
-    width: 100vw;
+    /*height: 100vh;*/
+    /*width: 100vw;*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -345,11 +350,11 @@
     }
 }
 
-@media all and (min-width: 1024px) and (max-width: 1440px) {
-    .content{
-        height: auto;
-    }
-    .page{
-        height: 110%;
-    }
-}
+/*@media all and (min-width: 1024px) and (max-width: 1440px) {*/
+/*    .content{*/
+/*        height: auto;*/
+/*    }*/
+/*    .page{*/
+/*        height: 110%;*/
+/*    }*/
+/*}*/

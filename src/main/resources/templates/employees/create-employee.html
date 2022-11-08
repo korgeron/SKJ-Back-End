@@ -2,21 +2,24 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/fragments :: head('Portal | Create Employee')"></head>
 <body>
-<img class="page" th:src="@{~/images/content-screen.png}" alt="">
-<div class="content">
-    <h1 class="greeting">Employee Creation!</h1>
-    <form class="mainForm" style="padding: 0!important; margin-top: 2vh!important;" th:action="@{/employee/create}" method="post">
-        <label for="username">Employee Username</label>
-        <input id="username" type="text" name="username">
-        <label for="password">Employee Password</label>
-        <input id="password" type="text" name="password">
-        <label for="role">Employee Role</label>
-        <input id="role" type="text" name="role" value="EMPLOYEE" placeholder="enter EMPLOYEE">
-        <button style="font-size: 3vh" type="submit">Create</button>
-    </form>
-    <button class="backBtn" type="button">GO BACK</button>
+<div class="page">
+    <div class="content">
+        <h1 class="greeting">Employee Creation!</h1>
+        <form class="mainForm" style="padding: 0!important; margin-top: 2vh!important;" th:action="@{/employee/create}"
+              method="post">
+            <!--Todo: Need to make error messages-->
+            <label for="username">Employee Username</label>
+            <input id="username" type="text" name="username">
+            <label for="password">Employee Password</label>
+            <input id="password" type="text" name="password">
+            <label for="role">Employee Role</label>
+            <input id="role" type="text" name="role" value="EMPLOYEE" placeholder="enter EMPLOYEE">
+            <button style="font-size: 3vh" type="submit">Create</button>
+        </form>
+        <button class="backBtn" type="button">GO BACK</button>
 
-    <script th:src="@{~/js/portal.js}"></script>
+        <script th:src="@{~/js/portal.js}"></script>
+    </div>
 </div>
 </body>
 </html>

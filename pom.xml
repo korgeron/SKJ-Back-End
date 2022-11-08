@@ -48,6 +48,13 @@
             <artifactId>spring-boot-starter-security</artifactId>
             <version>2.7.3</version>
         </dependency>
+
+        <!--MAILJET-->
+        <dependency>
+            <groupId>com.mailjet</groupId>
+            <artifactId>mailjet-client</artifactId>
+            <version>4.2.0</version>
+        </dependency>
     </dependencies>
 
     <build>

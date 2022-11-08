@@ -3,47 +3,32 @@
 <head th:replace="fragments/fragments :: head('Portal | Home')"></head>
 <body>
 
+<div class="page">
+    <div class="content">
+        <button class="logoutBtn" type="button">Logout</button>
+        <h1 class="greeting" th:text="${'WELCOME ' + user}"></h1>
+        <div class="content-panel">
+            <div class="panels" th:if="${permissions.getRole() == 'ADMIN'}">
+                <div class="panels-info">
+                    <h3 class="info-title">REGISTER EMPLOYEE</h3>
+                    <i class="fa-solid fa-users fa-6x"></i>
+                </div>
+            </div>
+            <div class="panels">
+                <div class="panels-info">
+                    <h3 class="info-title">ONLINE STORE</h3>
+                    <i class="fa-solid fa-money-check-dollar fa-6x"></i>
+                </div>
+            </div>
+            <div class="panels">
+                <div class="panels-info">
+                    <h3 class="info-title">MESSAGES</h3>
+                    <i class="fa-regular fa-envelope fa-6x"></i>
+                </div>
 
-<img class="page" th:src="@{~/images/content-screen.png}" alt="">
-<div class="content">
-    <button class="logoutBtn" type="button">Logout</button>
-    <h1 class="greeting" th:text="${'WELCOME ' + user}"></h1>
-    <div class="content-panel">
-        <div class="panels" th:if="${permissions.getRole() == 'ADMIN'}">
-            <div class="panels-info">
-                <h3 class="info-title">REGISTER EMPLOYEE</h3>
-                <i class="fa-solid fa-users fa-6x"></i>
             </div>
-        </div>
-        <div class="panels">
-            <div class="panels-info">
-                <h3 class="info-title">ONLINE STORE</h3>
-                <i class="fa-solid fa-money-check-dollar fa-6x"></i>
-            </div>
-        </div>
-        <div class="panels">
-            <div class="panels-info">
-                <h3 class="info-title">MESSAGES</h3>
-                <i class="fa-regular fa-envelope fa-6x"></i>
-            </div>
-
         </div>
     </div>
-<!--    <div class="content-panel" th:if="${user.role != 'ADMIN'}">-->
-<!--        <div class="panels">-->
-<!--            <div class="panels-info">-->
-<!--                <h3 class="info-title">Online Store</h3>-->
-<!--                <i class="fa-solid fa-money-check-dollar fa-7x"></i>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="panels">-->
-<!--            <div class="panels-info">-->
-<!--                <h3 class="info-title">Messages</h3>-->
-<!--                <i class="fa-regular fa-envelope fa-7x"></i>-->
-<!--            </div>-->
-
-<!--        </div>-->
-<!--    </div>-->
 </div>
 
 <script th:src="@{~/js/portal.js}"></script>
