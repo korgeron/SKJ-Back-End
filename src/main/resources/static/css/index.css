@@ -111,6 +111,10 @@
     border: 1px outset antiquewhite;
 }
 
+.product-card > p{
+
+}
+
 .info-title{
     font-size: 25px;
     margin-bottom: 2%;
