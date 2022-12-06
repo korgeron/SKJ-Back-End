@@ -258,7 +258,7 @@
 
 /*Styling form for online shop*/
 .subForm{
-    padding: 1em;
+    padding: 0 1em 0 1em;
     height: 90%;
     width: 90%;
     display: flex;
@@ -275,7 +275,7 @@
 }
 
 .subForm > label{
-    padding: 0 0 2vh 0;
+    padding: .5vh 0 1vh 0;
     font-size: 4vh;
     font-weight: bold;
 }
@@ -306,6 +306,7 @@
     height: 5vh;
     color: black;
     font-size: 3vh;
+    margin-bottom: 2vh;
 }
 
 /*Keyframes for animations*/
