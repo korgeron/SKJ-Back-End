@@ -33,3 +33,7 @@ build/
 .vscode/
 
 src/main/resources/application.properties
+
+.DS_STORE
+
+src/main/resources/static/js/keys.js

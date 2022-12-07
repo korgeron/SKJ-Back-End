@@ -1,7 +1,9 @@
 "use strict";
 
 const photo = document.querySelector('#addPhoto');
+const client = filestack.init(FILESTACK_KEY);
+
 photo.addEventListener('click', ()=>{
-    const client = filestack.init(YOUR_API_KEY);
+
     client.picker().open();
 })
