@@ -3,7 +3,13 @@
 const photo = document.querySelector('#addPhoto');
 const client = filestack.init(FILESTACK_KEY);
 
-photo.addEventListener('click', ()=>{
+const options = {
+    accept: ["image/*"],
+    onFileUploadFinished(file) {
+        console.log(file)
+    }
+}
 
-    client.picker().open();
+photo.addEventListener('click', ()=>{
+    client.picker(options).open();
 })
