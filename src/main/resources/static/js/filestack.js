@@ -7,6 +7,7 @@ const options = {
     accept: ["image/*"],
     onFileUploadFinished(file) {
         console.log(file)
+        document.querySelector('.subForm').innerHTML += `<input type="hidden" th:value="${file.url}" />`;
     }
 }
 
