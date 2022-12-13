@@ -355,11 +355,8 @@
     }
 }
 
-/*@media all and (min-width: 1024px) and (max-width: 1440px) {*/
-/*    .content{*/
-/*        height: auto;*/
-/*    }*/
-/*    .page{*/
-/*        height: 110%;*/
-/*    }*/
-/*}*/
+@media all and (min-width: 1024px) and (max-width: 1440px) {
+    .mainForm{
+        width: 50vw;
+    }
+}
