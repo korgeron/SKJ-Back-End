@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head('Portal | Add Clothing')"></head>
+<body>
+
+<div class="page">
+    <div class="content">
+        <h1 style="margin-bottom: 2vh!important;" class="greeting">Add Equipment!</h1>
+        <!--        <div class="content-panel">-->
+        <form class="subForm" th:action="@{/shop/add-equipment}" method="post">
+            <div th:if="${error == true}">
+                <div class="errorMessage">there was an issue creating this product</div>
+            </div>
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" placeholder="Sparring Gloves">
+            <label style="margin-top: 1vh!important;" for="color">Color</label>
+            <input id="color" type="text" name="color" placeholder="red">
+            <label for="size" style="margin-top: 1vh!important;">Size</label>
+            <select name="size" id="size">
+                <option value="">Click to see options</option>
+                <option value="N/A">N/A</option>
+                <option value="S">Small</option>
+                <option value="M">Medium</option>
+                <option value="L">Large</option>
+                <option value="XL">Extra Large (XL)</option>
+                <option value="XXL">Extra Large (XXL)</option>
+                <option value="3XL">Extra Large (3XL)</option>
+            </select>
+
+            <label for="category">Category</label>
+            <select name="category" id="category">
+                <option value="">Click to see options</option>
+                <option value="shirt">coming soon</option>
+                <option value="uniform">coming soon</option>
+                <option value="belts">coming soon</option>
+            </select>
+
+            <label for="price">Price</label>
+            <input id="price" type="text" name="price" value="$">
+            <button id="addPhoto" type="button">Add Photo</button>
+            <button type="submit">Create</button>
+        </form>
+        <button style="margin-top: 3vh!important;" class="backBtn">GO BACK</button>
+        <!--        </div>-->
+    </div>
+</div>
+
+<script th:src="@{~/js/add-product.js}"></script>
+<script th:src="@{~/js/keys.js}"></script>
+<script th:src="@{~/js/filestack.js}"></script>
+
+</body>
+</html>

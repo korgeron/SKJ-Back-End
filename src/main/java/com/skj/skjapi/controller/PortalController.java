@@ -111,9 +111,22 @@ public class PortalController {
     }
 
     @GetMapping("/shop/add-equipment")
-    @ResponseBody
     public String addEquipmentHTML() {
-        return "<h1>ADDING SOME EQUIPMENT</h1>";
+        return "shop/add-equipment";
+    }
+
+    @PostMapping("/shop/add-equipment")
+    public String addEquipment(Model model, @RequestParam(name = "name") String name, @RequestParam(name = "size") String size, @RequestParam(name = "category") String category, @RequestParam(name = "price") String price, @RequestParam(name = "color") String color){
+
+        if (!category.equals("") && !name.equals("") && !size.equals("") && !price.equals("$") && !color.equals("")){
+            productsList.save(new Product(category, name, size, color, price));
+            return "redirect:/shop/all-products";
+        }
+        else{
+            model.addAttribute("error", true);
+            return "shop/add-clothing";
+        }
+
     }
 
     @GetMapping("/messages")

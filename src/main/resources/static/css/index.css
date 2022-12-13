@@ -359,4 +359,7 @@
     .mainForm{
         width: 50vw;
     }
+    .content-panel{
+        justify-content: unset;
+    }
 }

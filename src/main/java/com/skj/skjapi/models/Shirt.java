@@ -1,3 +1,4 @@
+//THIS ENTITY IS FOR THE API CONTROLLER
 package com.skj.skjapi.models;
 
 import javax.persistence.*;
