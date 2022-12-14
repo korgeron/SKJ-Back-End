@@ -35,8 +35,10 @@ public class SecurityConfiguration {
                         (
                                 "/",
                                 "/shop",
-//                                "/shop/all-products",
+                                "/shop/all-products",
                                 "/shop/add-clothing",
+                                "/shop/equipment-page",
+                                "/shop/clothing-page",
                                 "/shop/add-equipment",
                                 "/messages"
                         )

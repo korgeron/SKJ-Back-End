@@ -5,52 +5,31 @@
 <!--<img class="page" th:src="@{~/images/content-screen.png}" alt="">-->
 <div class="page">
     <div class="content">
-        <h1 class="greeting">Products Page!</h1>
-        <div class="content-panel">
-            <div class="product-panel">
-                <h3 class="greeting product-title">SHIRTS!</h3>
-                <div class="product-content">
-                    <div th:each="product : ${products}"
-                         th:if="${product.category != null && product.category == 'shirt'}">
-                        <div class="product-card">
-                            <p th:text="${product.name}"></p>
-                            <small th:text="${product.size}"></small>
-                            <p th:text="${product.price}"></p>
-                        </div>
+        <h1 class="greeting">All Products!</h1>
+
+            <div class="content-panel">
+
+                <div class="panels">
+                    <div class="panels-info">
+                        <div class="info-title">View Clothing</div>
+                        <i class="fa-solid fa-shirt fa-6x"></i>
                     </div>
                 </div>
-            </div>
-            <div class="product-panel">
-                <h3 class="greeting product-title">UNIFORMS!</h3>
-                <div class="product-content">
-                    <div th:each="product : ${products}"
-                         th:if="${product.category != null && product.category == 'uniform'}">
-                        <div class="product-card">
-                            <p th:text="${product.name}"></p>
-                            <small th:text="${product.size}"></small>
-                            <p th:text="${product.price}"></p>
-                        </div>
+                <div class="panels">
+                    <div class="panels-info">
+                        <div class="info-title">View Equipment</div>
+                        <i class="fa-solid fa-dumbbell fa-6x"></i>
                     </div>
                 </div>
+
+                <button style="margin-top: 2vh!important; padding: 2em!important;" class="backBtn">GO BACK</button>
             </div>
-            <div class="product-panel">
-                <h3 class="greeting product-title">BELTS!</h3>
-                <div class="product-content">
-                    <div th:each="product : ${products}"
-                         th:if="${product.category != null && product.category == 'belts'}">
-                        <div class="product-card">
-                            <p th:text="${product.name}"></p>
-                            <small th:text="${product.size}"></small>
-                            <p th:text="${product.price}"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button style="margin-top: 2vh!important; padding: 2em!important;" class="backBtn">GO BACK</button>
+
         </div>
     </div>
 
 </div>
-<script th:src="@{~/js/add-product.js}"></script>
+<script th:src="@{~/js/back-button.js}"></script>
+<script th:src="@{~/js/all-products.js}"></script>
 </body>
 </html>

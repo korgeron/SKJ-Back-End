@@ -244,6 +244,30 @@
     border: 1px solid #00b0ff;
 }
 
+.clothingBackBtn{
+    position: relative;
+    margin-top: 5vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: none;
+    border: 1px solid floralwhite;
+    height: 10vh;
+    width: 50vw;
+    border-radius: 1em;
+    font-size: 1.5vh;
+    animation-name: resize;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    transition: all 1s;
+}
+.clothingBackBtn:hover{
+    cursor: pointer;
+    background: rgba(211, 211, 211, 0.75);
+    color: black;
+    border: 1px solid #00b0ff;
+}
+
 .errorMessage{
     position: relative;
     visibility: hidden;
@@ -355,7 +379,7 @@
     }
 }
 
-@media all and (min-width: 1024px) and (max-width: 1440px) {
+@media all and (min-width: 769px) and (max-width: 1440px) {
     .mainForm{
         width: 50vw;
     }

@@ -87,9 +87,21 @@ public class PortalController {
     }
 
     @GetMapping("/shop/all-products")
-    public String allProductsHTML(Model model) {
-        model.addAttribute("products", productsList.findAll());
+    public String allProductsHTML() {
+//        model.addAttribute("products", productsList.findAll());
         return "shop/all-products";
+    }
+
+    @GetMapping("/shop/clothing-page")
+    public String clothingPageHTML(Model model) {
+        model.addAttribute("products", productsList.findAll());
+        return "shop/clothing-page";
+    }
+
+    @GetMapping("/shop/equipment-page")
+    public String equipmentPageHTML(Model model){
+        model.addAttribute("products", productsList.findAll());
+        return "shop/equipment-page";
     }
 
     @GetMapping("/shop/add-clothing")
@@ -128,6 +140,7 @@ public class PortalController {
         }
 
     }
+
 
     @GetMapping("/messages")
     public String messageCenterHTML() {
