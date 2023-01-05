@@ -62,6 +62,11 @@ public class PortalController {
         return "redirect:/login";
     }
 
+    @GetMapping("employee/manager")
+    public String employeeManagerHTML(){
+        return "employees/employee-manager";
+    }
+
     @GetMapping("employee/create")
     public String createEmployeeHTML() {
         return "employees/create-employee";

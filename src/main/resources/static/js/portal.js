@@ -23,7 +23,7 @@ if (isAdmin === true){
 
             switch (true){
                 case i === 0:
-                    window.location.assign("/employee/create")
+                    window.location.assign("/employee/manager")
                     break;
                 case i === 1:
                     window.location.assign("/shop")
