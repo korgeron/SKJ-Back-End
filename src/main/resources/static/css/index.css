@@ -269,6 +269,7 @@
 }
 
 .errorMessage{
+    text-align: center;
     position: relative;
     visibility: hidden;
     color: red;
