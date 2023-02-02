@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head('Portal | Shop Home Page')"></head>
+<body>
+
+<div class="page">
+    <div class="content">
+        <h1 class="greeting">ONLINE SHOP!</h1>
+        <div class="content-panel">
+            <div class="panels">
+                <div class="panels-info">
+                    <h3 class="info-title">VIEW PRODUCTS</h3>
+                    <i class="fa-solid fa-box-open fa-6x"></i>
+                </div>
+            </div>
+
+            <div class="panels">
+                <div class="panels-info">
+                    <h3 class="info-title">ADD CLOTHING</h3>
+                    <i class="fa-solid fa-shirt fa-6x"></i>
+                </div>
+            </div>
+
+            <div class="panels">
+                <div class="panels-info">
+                    <h3 class="info-title">ADD EQUIPMENT</h3>
+                    <i class="fa-solid fa-dumbbell fa-6x"></i>
+                </div>
+            </div>
+
+            <!--Todo: NEED DIFFERENT VARIANT OF BACK BUTTON ON THIS LINE-->
+            <div style="margin-bottom: 3vh">
+                <button class="backBtn">GO BACK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{~/js/shop.js}"></script>
+</body>
+</html>
