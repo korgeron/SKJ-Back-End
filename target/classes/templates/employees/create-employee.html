@@ -18,7 +18,15 @@
         </form>
         <button class="backBtn" type="button">GO BACK</button>
 
-        <script th:src="@{~/js/portal.js}"></script>
+        <script>
+            let back = document.querySelector('.backBtn')
+            if (back != null) {
+                back.addEventListener('click', () => {
+                    back.style.background = "rgba(132,132,135,0.55)"
+                    window.location.assign("/employee/manager")
+                })
+            }
+        </script>
     </div>
 </div>
 </body>

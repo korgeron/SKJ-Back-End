@@ -26,10 +26,14 @@ public class SecurityConfiguration {
                 .antMatchers("/login")
                 .permitAll()
                 .and()
-                .authorizeRequests()
-                .antMatchers("/employee/create")
-                .hasAnyAuthority("ADMIN")
-                .and()
+//                .authorizeRequests()
+//                .antMatchers(
+//                        "/employee/create",
+//                        "employee/manager",
+//                        "/employee/view-all"
+//                )
+//                .hasAnyAuthority("ADMIN")
+//                .and()
                 .authorizeRequests()
                 .antMatchers
                         (

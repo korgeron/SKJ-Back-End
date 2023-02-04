@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
 public class PortalController {
 
     @Autowired
@@ -28,7 +27,7 @@ public class PortalController {
     @Autowired
     private PasswordEncoder encoder;
 
-    @GetMapping()
+    @GetMapping("/")
     public String landingHTML(Model model) {
         EmployeePermissions employee = (EmployeePermissions) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", employee.getUsername().toUpperCase());
@@ -36,7 +35,7 @@ public class PortalController {
         return "index";
     }
 
-    @GetMapping("login")
+    @GetMapping("/login")
     public String loginHTML() {
         List<Employee> employeeList = employeeRoster.findAll();
 //        List<Product> products = productsList.findAll();
@@ -56,23 +55,23 @@ public class PortalController {
         return "login";
     }
 
-    @GetMapping("logout")
+    @GetMapping("/logout")
     public String logoutHandler(HttpSession session) {
         session.invalidate();
         return "redirect:/login";
     }
 
-    @GetMapping("employee/manager")
+    @GetMapping("/employee/manager")
     public String employeeManagerHTML(){
         return "employees/employee-manager";
     }
 
-    @GetMapping("employee/create")
+    @GetMapping("/employee/create")
     public String createEmployeeHTML() {
         return "employees/create-employee";
     }
 
-    @PostMapping("employee/create")
+    @PostMapping("/employee/create")
     public String createEmployee(String username, String password, String role, Model model) {
         System.out.println(username);
         System.out.println(password);
@@ -84,6 +83,11 @@ public class PortalController {
             return "redirect:/employee/create";
         }
 
+    }
+
+    @GetMapping("/employee/view-all")
+    public String viewEmployeeHTML(){
+        return "employees/view-employees";
     }
 
     @GetMapping("/shop")

@@ -334,6 +334,14 @@
     margin-bottom: 2vh;
 }
 
+/*EMPLOYEE CARD*/
+.employee-card{
+    height: 2vh;
+    width: 1vw;
+    background: orange;
+}
+
+
 /*Keyframes for animations*/
 @keyframes open {
     from {

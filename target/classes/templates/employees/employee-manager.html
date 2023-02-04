@@ -7,9 +7,49 @@
     <div class="content">
         <h1 class="greeting">Employee Manager</h1>
         <div class="content-panel">
-
+            <div class="panels">
+                <div class="panels-info">
+                    <h3 class="info-title">CREATE EMPLOYEE</h3>
+                    <i class="fa-solid fa-user fa-6x"></i>
+                </div>
+            </div>
+            <div class="panels">
+                <div class="panels-info">
+                    <h3 class="info-title">VIEW EMPLOYEES</h3>
+                    <i class="fa-solid fa-users fa-6x"></i>
+                </div>
+            </div>
+            <button class="backBtn" type="button">GO BACK</button>
         </div>
     </div>
 </div>
 </body>
+<script>
+    document.querySelectorAll('.panels').forEach((panel, i) => {
+        panel.addEventListener('click', () => {
+            panel.style.background = "rgba(211, 211, 211, 0.9)"
+            switch (true){
+                case i === 0:
+                    window.location.assign("/employee/create")
+                    break;
+                case i === 1:
+                    window.location.assign("/employee/view-all")
+                    break;
+                // case i === 2:
+                //     window.location.assign("/messages")
+                //     break;
+            }
+
+        })
+
+        let back = document.querySelector('.backBtn')
+        if (back != null) {
+            back.addEventListener('click', () => {
+                back.style.background = "rgba(132,132,135,0.55)"
+                window.location.assign("/")
+            })
+        }
+
+    })
+</script>
 </html>
