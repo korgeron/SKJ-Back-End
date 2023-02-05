@@ -27,28 +27,38 @@
     .employee-card{
         /*height: 20vh;*/
         /*width: 80vw;*/
+        scale: 0;
         height: 45vh;
         width: 20vw;
         margin: 1em;
         border-radius: 1em;
         border: 1px solid orange;
-        overflow: hidden;}
+        overflow: hidden;
+        animation-name: resize;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        transition: all 1s;
+        animation-delay: 1.5s;
+    }
 
     .card-name{
         text-align: center;
         margin-top: 2em;
         font-size: 0;
-        animation-name: name;
+        animation-name: titlesizer;
         animation-duration: 2s;
         animation-fill-mode: forwards;
         transition: all 1s;
         animation-delay: 2s;
     }
 
+    .backBtn{
+        visibility: hidden;
+    }
 
 
     /*ANIMATION*/
-    @keyframes name {
+    @keyframes titlesizer {
         from{
             font-size: 0;
         }
@@ -81,7 +91,24 @@
                 <h2 class="card-name">Warren Orgeron</h2>
                 <div></div>
             </div>
+            <div class="employee-card">
+                <h2 class="card-name">Warren Orgeron</h2>
+                <div></div>
+            </div>
+            <div class="employee-card">
+                <h2 class="card-name">Warren Orgeron</h2>
+                <div></div>
+            </div>
+            <div class="employee-card">
+                <h2 class="card-name">Warren Orgeron</h2>
+                <div></div>
+            </div>
+            <div class="employee-card">
+                <h2 class="card-name">Warren Orgeron</h2>
+                <div></div>
+            </div>
         </div>
+        <button class="backBtn" type="button">GO BACK</button>
     </div>
 </div>
 </body>
