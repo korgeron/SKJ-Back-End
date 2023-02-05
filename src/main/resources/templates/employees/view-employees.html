@@ -2,13 +2,60 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/fragments :: head('Portal | View Employees')"></head>
 <body>
+<style>
+
+    .employee-panel {
+        padding: 1em;
+        visibility: hidden;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+        border: 1px inset white;
+        margin: 3vh 0 3vh 0;
+        max-height: 90%;
+        max-width: 90%;
+        border-radius: 1em;
+        transition: all 1s;
+        animation-name: open;
+        animation-delay: 1s;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /*EMPLOYEE CARD*/
+    .employee-card{
+        height: 20vh;
+        width: 80vw;
+        margin: 1em;
+        border-radius: 1em;
+        border: 1px solid orange;
+    }
+
+    @media screen and (min-width: 769px) and (max-width: 1440px) {
+        .employee-card{
+            height: 45vh;
+            width: 20vw;
+        }
+    }
+
+</style>
+
 <div class="page">
     <div class="content">
         <h1 class="greeting">ALL EMPLOYEES</h1>
-        <div class="content-panel">
-            <div class="employee-card">
-
-            </div>
+        <div class="employee-panel">
+            <div class="employee-card"></div>
+            <div class="employee-card"></div>
+            <div class="employee-card"></div>
+            <div class="employee-card"></div>
+            <div class="employee-card"></div>
+            <div class="employee-card"></div>
+            <div class="employee-card"></div>
+            <div class="employee-card"></div>
+            <div class="employee-card"></div>
+            <div class="employee-card"></div>
         </div>
     </div>
 </div>
