@@ -54,6 +54,13 @@
 
     .backBtn{
         visibility: hidden;
+        margin-bottom: 5vh;
+        margin-top: 0;
+        animation-name: hideNshow;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        transition: all 1s;
+        animation-delay: 2s;
     }
 
 
@@ -66,10 +73,6 @@
             font-size: 20px;
         }
     }
-
-
-
-
 
     /*and (max-width: 1440px)*/
     @media all and (max-width: 769px){
@@ -87,29 +90,28 @@
     <div class="content">
         <h1 class="greeting">ALL EMPLOYEES</h1>
         <div class="employee-panel">
-            <div class="employee-card">
-                <h2 class="card-name">Warren Orgeron</h2>
-                <div></div>
-            </div>
-            <div class="employee-card">
-                <h2 class="card-name">Warren Orgeron</h2>
-                <div></div>
-            </div>
-            <div class="employee-card">
-                <h2 class="card-name">Warren Orgeron</h2>
-                <div></div>
-            </div>
-            <div class="employee-card">
-                <h2 class="card-name">Warren Orgeron</h2>
-                <div></div>
-            </div>
-            <div class="employee-card">
-                <h2 class="card-name">Warren Orgeron</h2>
-                <div></div>
+            <div th:each="employee : ${employees}">
+                <div class="employee-card">
+                    <h2 class="card-name" th:text="${employee.getRole()}"></h2>
+                    <h2 class="card-name" th:text="${employee.getUsername()}"></h2>
+                    <div></div>
+                </div>
             </div>
         </div>
         <button class="backBtn" type="button">GO BACK</button>
     </div>
 </div>
 </body>
+<script>
+    let back = document.querySelector('.backBtn')
+    if (back != null) {
+        back.addEventListener('click', () => {
+            back.style.background = "rgba(132,132,135,0.55)"
+            window.location.assign("/employee/manager")
+        })
+    }
+
+
+
+</script>
 </html>

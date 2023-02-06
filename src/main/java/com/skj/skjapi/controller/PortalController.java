@@ -86,7 +86,8 @@ public class PortalController {
     }
 
     @GetMapping("/employee/view-all")
-    public String viewEmployeeHTML(){
+    public String viewEmployeeHTML(Model model){
+        model.addAttribute("employees",employeeRoster.findAll());
         return "employees/view-employees";
     }
 
