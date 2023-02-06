@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PortalController {
@@ -89,6 +90,13 @@ public class PortalController {
     public String viewEmployeeHTML(Model model){
         model.addAttribute("employees",employeeRoster.findAll());
         return "employees/view-employees";
+    }
+
+    @GetMapping("/employee/{id}")
+    public String individualEmployeePage(@PathVariable String id, Model model){
+        Employee employee = employeeRoster.getReferenceById(Long.parseLong(id));
+        model.addAttribute("employee", employee);
+        return "/employees/individual-employee";
     }
 
     @GetMapping("/shop")

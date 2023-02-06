@@ -25,20 +25,24 @@
 
     /*EMPLOYEE CARD*/
     .employee-card{
-        /*height: 20vh;*/
-        /*width: 80vw;*/
         scale: 0;
         height: 45vh;
         width: 20vw;
         margin: 1em;
         border-radius: 1em;
-        border: 1px solid orange;
+        background: rgba(119, 136, 153, 0.31);
+        border: 1px inset rgba(205, 92, 92, 0.49);
         overflow: hidden;
         animation-name: resize;
         animation-duration: 2s;
         animation-fill-mode: forwards;
         transition: all 1s;
         animation-delay: 1.5s;
+    }
+
+    .employee-card:hover{
+        cursor: pointer;
+        background: rgba(211, 211, 211, 0.75);
     }
 
     .card-name{
@@ -94,6 +98,7 @@
                 <div class="employee-card">
                     <h2 class="card-name" th:text="${employee.getRole()}"></h2>
                     <h2 class="card-name" th:text="${employee.getUsername()}"></h2>
+                    <input type="hidden" th:value="${employee.getId()}">
                     <div></div>
                 </div>
             </div>
@@ -103,6 +108,17 @@
 </div>
 </body>
 <script>
+
+    document.querySelectorAll('.employee-card').forEach((card, i) => {
+        card.addEventListener('click', () => {
+            card.style.background = "rgba(211, 211, 211, 0.9)"
+            let id = card.childNodes.item(5).defaultValue
+            console.log(id)
+
+            window.location.assign("/employee/"+id)
+        })
+    })
+
     let back = document.querySelector('.backBtn')
     if (back != null) {
         back.addEventListener('click', () => {
@@ -110,5 +126,6 @@
             window.location.assign("/employee/manager")
         })
     }
+
 </script>
 </html>

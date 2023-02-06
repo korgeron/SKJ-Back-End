@@ -25,6 +25,7 @@
 </div>
 </body>
 <script>
+
     document.querySelectorAll('.panels').forEach((panel, i) => {
         panel.addEventListener('click', () => {
             panel.style.background = "rgba(211, 211, 211, 0.9)"
@@ -35,21 +36,16 @@
                 case i === 1:
                     window.location.assign("/employee/view-all")
                     break;
-                // case i === 2:
-                //     window.location.assign("/messages")
-                //     break;
             }
-
         })
-
-        let back = document.querySelector('.backBtn')
-        if (back != null) {
-            back.addEventListener('click', () => {
-                back.style.background = "rgba(132,132,135,0.55)"
-                window.location.assign("/")
-            })
-        }
-
     })
+
+    let back = document.querySelector('.backBtn')
+    if (back != null) {
+        back.addEventListener('click', () => {
+            back.style.background = "rgba(132,132,135,0.55)"
+            window.location.assign("/")
+        })
+    }
 </script>
 </html>
