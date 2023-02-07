@@ -5,6 +5,7 @@
 <!--<img class="page" th:src="@{~/images/content-screen.png}" alt="">-->
 <div class="page">
     <div class="content">
+        <button class="logoutBtn" type="button">Logout</button>
         <h1 class="greeting">Clothing Page!</h1>
         <div class="content-panel">
             <div class="product-panel">
@@ -52,5 +53,14 @@
 
 </div>
 <script th:src="@{~/js/back-button.js}"></script>
+<script>
+    let logout = document.querySelector('.logoutBtn')
+    if (logout != null) {
+        logout.addEventListener('click', () => {
+            logout.style.background = "rgba(132,132,135,0.55)"
+            window.location.assign("/logout")
+        })
+    }
+</script>
 </body>
 </html>

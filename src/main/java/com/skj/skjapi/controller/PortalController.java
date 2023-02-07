@@ -73,11 +73,11 @@ public class PortalController {
     }
 
     @PostMapping("/employee/create")
-    public String createEmployee(String username, String password, String role, Model model) {
+    public String createEmployee(String username, String password, String role, String confirm) {
         System.out.println(username);
         System.out.println(password);
         System.out.println(role);
-        if (!username.equals("") && !password.equals("") && role.equals("EMPLOYEE")) {
+        if (!username.equals("") && !password.equals("") && role.equals("EMPLOYEE") && password.equals(confirm)) {
             employeeRoster.save(new Employee(username, encoder.encode(password), role));
             return "redirect:/";
         } else {
@@ -95,6 +95,10 @@ public class PortalController {
     @GetMapping("/employee/{id}")
     public String individualEmployeePage(@PathVariable String id, Model model){
         Employee employee = employeeRoster.getReferenceById(Long.parseLong(id));
+        String c = employee.getUsername().substring(0,1);
+        String cc = employee.getUsername().substring(1);
+        String name = c.toUpperCase() + cc.toLowerCase();
+        model.addAttribute("name", name);
         model.addAttribute("employee", employee);
         return "/employees/individual-employee";
     }
