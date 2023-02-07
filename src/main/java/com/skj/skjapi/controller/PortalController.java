@@ -103,6 +103,24 @@ public class PortalController {
         return "/employees/individual-employee";
     }
 
+    @PostMapping("/employee/update-password")
+    public String updateEmployee(String id, String password, String confirm, Model model){
+
+        Employee employee = employeeRoster.getReferenceById(Long.parseLong(id));
+        String c = employee.getUsername().substring(0,1);
+        String cc = employee.getUsername().substring(1);
+        String name = c.toUpperCase() + cc.toLowerCase();
+        model.addAttribute("name", name);
+        model.addAttribute("employee", employee);
+
+        if (password.equals(confirm)) {
+            employeeRoster.updatePassword(encoder.encode(password), Long.parseLong(id));
+        }
+
+        return "/employees/individual-employee";
+
+    }
+
     @GetMapping("/shop")
     public String shopLandingHTML() {
         return "shop/index";

@@ -178,6 +178,7 @@
 
 .mainForm > label {
     padding: 3vh 0 3vh 0;
+    /*padding-top: 2vh;*/
     font-size: 3vh;
 }
 
@@ -200,7 +201,8 @@
     position: absolute;
     top: 0;
     right: 0;
-    margin: 2vh 2vw 0 0;
+    /*margin: 2vh 2vw 0 0;*/
+    margin: 1vh 1vw 0 0;
     background: none;
     border: 1px solid floralwhite;
     height: 5vh;
@@ -334,6 +336,84 @@
     margin-bottom: 2vh;
 }
 
+.employee-panel {
+    padding: 1em;
+    visibility: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    border: 1px inset white;
+    margin: 3vh 0 3vh 0;
+    max-height: 90%;
+    max-width: 90%;
+    border-radius: 1em;
+    transition: all 1s;
+    animation-name: open;
+    animation-delay: 1s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/*EMPLOYEE CARD*/
+.employee-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    scale: 0;
+    height: 30vh;
+    width: 20vw;
+    margin: 1em;
+    border-radius: 1em;
+    background: rgba(119, 136, 153, 0.31);
+    border: 1px inset rgba(205, 92, 92, 0.49);
+    overflow: hidden;
+    animation-name: resize;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    transition: all 1s;
+    animation-delay: 1.5s;
+}
+
+.employee-card:hover{
+    cursor: pointer;
+    background: rgba(211, 211, 211, 0.75);
+}
+
+.card-name{
+    text-align: center;
+    margin-top: 1vh;
+    font-size: 0;
+    animation-name: titlesizer;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    transition: all 1s;
+    animation-delay: 2s;
+}
+
+.backBtn{
+    visibility: hidden;
+    margin-bottom: 5vh;
+    margin-top: 0;
+    animation-name: hideNshow;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    transition: all 1s;
+    animation-delay: 2s;
+}
+
+
+/*ANIMATION*/
+@keyframes titlesizer {
+    from{
+        font-size: 0;
+    }
+    to{
+        font-size: 40px;
+    }
+}
 
 /*Keyframes for animations*/
 @keyframes open {
@@ -381,13 +461,27 @@
     }
 }
 
-@media all and (min-width: 769px) and (max-width: 1440px) {
+@media all and (min-width: 768px) and (max-width: 1440px) {
     .mainForm{
-        width: 50vw;
+        /*TOOK THIS OFF TO TEST SCREEN RESIZING FOR SMALL SCREEN*/
+
+        /*width: 50vw;*/
     }
     .content-panel{
         justify-content: unset;
     }
 
+    .employee-card{
+        height: 20vh;
+        width: 80vw;
+    }
 
+    /*@keyframes titlesizer {*/
+    /*    from{*/
+    /*        font-size: 0;*/
+    /*    }*/
+    /*    to{*/
+    /*        font-size: 40px;*/
+    /*    }*/
+    /*}*/
 }

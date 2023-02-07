@@ -2,6 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/fragments :: head('Portal | ' + ${employee.getUsername()})"></head>
 <style>
+
+    .updatePage{
+        display: none;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: black;
+    }
+
+    .update:hover{
+        cursor: pointer;
+        background: rgba(211, 211, 211, 0.75);
+        color: black;
+        border: 1px solid #00b0ff;
+    }
+
+    .cancel:hover{
+        cursor: pointer;
+        background: rgba(211, 211, 211, 0.75);
+        color: black;
+        border: 1px solid #00b0ff;
+    }
+
     .backBtn{
         visibility: hidden;
         margin-bottom: 5vh;
@@ -14,6 +37,23 @@
     }
 </style>
 <body>
+<div class="updatePage">
+    <div class="content">
+<!--        <div class="content-panel">-->
+            <form class="mainForm" style="padding: 0!important; margin-top: 2vh!important;" th:action="@{/employee/update-password}"
+                  method="post">
+                <!--Todo: Need to make error messages-->
+                <label for="password">Updated Password</label>
+                <input id="password" type="password" name="password">
+                <label for="confirm">Confirm Password</label>
+                <input id="confirm" type="password" name="confirm">
+                <button class="update" style="font-size: 3vh" type="submit">Update</button>
+                <input type="hidden" th:value="${employee.getId()}" name="id">
+                <button class="cancel" style="font-size: 3vh; background: #cd5c5cb0" type="button">Cancel</button>
+            </form>
+<!--        </div>-->
+    </div>
+</div>
 <div class="page">
     <div class="content">
         <button class="logoutBtn" type="button">Logout</button>
@@ -33,6 +73,30 @@
 </body>
 <script>
 
+    document.querySelectorAll('.panels').forEach((panel, i) => {
+        panel.addEventListener('click', () => {
+            panel.style.background = "rgba(211, 211, 211, 0.9)"
+            switch (true){
+                case i === 0:
+                    document.querySelector('.updatePage').style.display = "block"
+                    document.querySelector('.logoutBtn').style.display = "none"
+                    document.querySelectorAll('.info-title').forEach((title)=>{
+                        title.style.display = "none"
+                    })
+                    document.querySelector('.backBtn').style.display = "none"
+                    document.querySelector('.greeting').style.display = "none"
+                    document.querySelector('.content').style.justifyContent = "center"
+                    document.querySelectorAll('.panels').forEach((panel)=>{
+                        panel.style.display = "none"
+                    })
+                    break;
+            }
+        })
+    })
+
+    document.querySelector('.cancel').addEventListener('click', ()=>{
+        window.location.reload()
+    })
 
     let back = document.querySelector('.backBtn')
     if (back != null) {
