@@ -105,7 +105,6 @@ public class PortalController {
 
     @PostMapping("/employee/update-password")
     public String updateEmployee(String id, String password, String confirm, Model model){
-
         Employee employee = employeeRoster.getReferenceById(Long.parseLong(id));
         String c = employee.getUsername().substring(0,1);
         String cc = employee.getUsername().substring(1);
@@ -113,11 +112,13 @@ public class PortalController {
         model.addAttribute("name", name);
         model.addAttribute("employee", employee);
 
-        if (password.equals(confirm)) {
+        if (password.equals(confirm) && !password.equals("")) {
             employeeRoster.updatePassword(encoder.encode(password), Long.parseLong(id));
+            return "/employees/individual-employee";
+        } else {
+            return "/employees/individual-employee";
         }
 
-        return "/employees/individual-employee";
 
     }
 

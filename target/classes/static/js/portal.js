@@ -6,7 +6,7 @@
 const getUsername = document.querySelector('.greeting').innerHTML
 
 const username = getUsername.split(" ")
-console.log(username);
+// console.log(username);
 let isAdmin = false
 
 if (username[1] === "ADMIN") {

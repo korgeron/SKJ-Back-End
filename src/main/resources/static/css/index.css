@@ -202,7 +202,7 @@
     top: 0;
     right: 0;
     /*margin: 2vh 2vw 0 0;*/
-    margin: 1vh 1vw 0 0;
+    margin: .5vh .5vw 0 0;
     background: none;
     border: 1px solid floralwhite;
     height: 5vh;
@@ -476,12 +476,4 @@
         width: 80vw;
     }
 
-    /*@keyframes titlesizer {*/
-    /*    from{*/
-    /*        font-size: 0;*/
-    /*    }*/
-    /*    to{*/
-    /*        font-size: 40px;*/
-    /*    }*/
-    /*}*/
 }

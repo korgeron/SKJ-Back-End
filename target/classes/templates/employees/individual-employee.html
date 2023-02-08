@@ -59,11 +59,14 @@
         <button class="logoutBtn" type="button">Logout</button>
         <h1 class="greeting" th:text="${name}+'\'s' + ' Profile'"></h1>
         <div class="content-panel">
+            <div th:if="updated == false">
+                <h1 class="errorMessage">UPDATE FAILED!!</h1>
+            </div>
             <div class="panels">
                 <div class="panels-info">
-                    <h3 class="info-title">UPDATE</h3>
-                    <h3 class="info-title">PASSWORD</h3>
-                    <h3 class="info-title">*********</h3>
+                    <h3 class="info-title card-name">UPDATE</h3>
+                    <h3 class="info-title card-name">PASSWORD</h3>
+                    <h3 class="info-title card-name">*********</h3>
                 </div>
             </div>
         </div>
