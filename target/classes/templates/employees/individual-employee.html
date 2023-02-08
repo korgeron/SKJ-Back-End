@@ -3,7 +3,7 @@
 <head th:replace="fragments/fragments :: head('Portal | ' + ${employee.getUsername()})"></head>
 <style>
 
-    .updatePage{
+    .updatePage {
         display: none;
         position: absolute;
         height: 100%;
@@ -11,21 +11,21 @@
         background: black;
     }
 
-    .update:hover{
+    .update:hover {
         cursor: pointer;
         background: rgba(211, 211, 211, 0.75);
         color: black;
         border: 1px solid #00b0ff;
     }
 
-    .cancel:hover{
+    .cancel:hover {
         cursor: pointer;
         background: rgba(211, 211, 211, 0.75);
         color: black;
         border: 1px solid #00b0ff;
     }
 
-    .backBtn{
+    .backBtn {
         visibility: hidden;
         margin-bottom: 5vh;
         margin-top: 0;
@@ -39,34 +39,59 @@
 <body>
 <div class="updatePage">
     <div class="content">
-<!--        <div class="content-panel">-->
-            <form class="mainForm" style="padding: 0!important; margin-top: 2vh!important;" th:action="@{/employee/update-password}"
-                  method="post">
-                <!--Todo: Need to make error messages-->
-                <label for="password">Updated Password</label>
-                <input id="password" type="password" name="password">
-                <label for="confirm">Confirm Password</label>
-                <input id="confirm" type="password" name="confirm">
-                <button class="update" style="font-size: 3vh" type="submit">Update</button>
-                <input type="hidden" th:value="${employee.getId()}" name="id">
-                <button class="cancel" style="font-size: 3vh; background: #cd5c5cb0" type="button">Cancel</button>
-            </form>
-<!--        </div>-->
+        <!--        <div class="content-panel">-->
+        <form class="mainForm" style="padding: 0!important; margin-top: 2vh!important;"
+              th:action="@{/employee/update-password}"
+              method="post">
+            <!--Todo: Need to make error messages-->
+            <label for="password">Updated Password</label>
+            <input id="password" type="password" name="password">
+            <label for="confirm">Confirm Password</label>
+            <input id="confirm" type="password" name="confirm">
+            <button class="update" style="font-size: 3vh" type="submit">Update</button>
+            <input type="hidden" th:value="${employee.getId()}" name="id">
+            <button class="cancel" style="font-size: 3vh; background: #cd5c5cb0" type="button">Cancel</button>
+        </form>
+        <!--        </div>-->
     </div>
 </div>
 <div class="page">
     <div class="content">
         <button class="logoutBtn" type="button">Logout</button>
         <h1 class="greeting" th:text="${name}+'\'s' + ' Profile'"></h1>
+        <div th:if="${updated == false}">
+            <h1 class="errorMessage">FAILED TO UPDATE USER!</h1>
+        </div>
+        <div th:if="${emptyBox == true}">
+            <h1 class="errorMessage">UPDATE FAILED DUE TO EMPTY TEXT BOX!</h1>
+        </div>
+        <div th:if="${doesntMatch == true}">
+            <h1 class="errorMessage">PASSWORD CONFIRMATION DID NOT MATCH!</h1>
+        </div>
         <div class="content-panel">
-            <div th:if="updated == false">
-                <h1 class="errorMessage">UPDATE FAILED!!</h1>
-            </div>
             <div class="panels">
+                <div th:if="${updated == true}">
+                    <h1 style="color: lawngreen" class="card-name">UPDATED PASSWORD</h1>
+                </div>
                 <div class="panels-info">
                     <h3 class="info-title card-name">UPDATE</h3>
                     <h3 class="info-title card-name">PASSWORD</h3>
                     <h3 class="info-title card-name">*********</h3>
+                </div>
+            </div>
+            <div th:if="${employee.getRole() != 'ADMIN' && employee.getId() != 1}" class="panels">
+                <div class="panels-info">
+                    <h3 class="info-title card-name">DELETE</h3>
+                    <h3 class="info-title card-name">EMPLOYEE</h3>
+                    <div style="display: flex">
+                        <i class="fa-solid fa-ban card-name"></i>
+                        <i class="fa-solid fa-ban card-name"></i>
+                        <i class="fa-solid fa-ban card-name"></i>
+                        <i class="fa-solid fa-ban card-name"></i>
+                    </div>
+                    <form id="deleteEmployee" th:action="@{/employee/delete}" th:method="post">
+                        <input type="hidden" th:value="${employee.getId()}" name="empID">
+                    </form>
                 </div>
             </div>
         </div>
@@ -75,30 +100,46 @@
 </div>
 </body>
 <script>
+    let failMessage = document.querySelectorAll('.errorMessage')
 
     document.querySelectorAll('.panels').forEach((panel, i) => {
         panel.addEventListener('click', () => {
             panel.style.background = "rgba(211, 211, 211, 0.9)"
-            switch (true){
+            switch (true) {
                 case i === 0:
+                    failMessage.forEach(fail => {
+                        if (fail != null) {
+                            fail.style.display = "none"
+                        }
+                    })
+
                     document.querySelector('.updatePage').style.display = "block"
                     document.querySelector('.logoutBtn').style.display = "none"
-                    document.querySelectorAll('.info-title').forEach((title)=>{
+                    document.querySelectorAll('.info-title').forEach((title) => {
                         title.style.display = "none"
                     })
                     document.querySelector('.backBtn').style.display = "none"
                     document.querySelector('.greeting').style.display = "none"
                     document.querySelector('.content').style.justifyContent = "center"
-                    document.querySelectorAll('.panels').forEach((panel)=>{
+                    document.querySelectorAll('.panels').forEach((panel) => {
                         panel.style.display = "none"
                     })
+                    break;
+                case i === 1:
+                    document.querySelector('#deleteEmployee').submit()
                     break;
             }
         })
     })
 
-    document.querySelector('.cancel').addEventListener('click', ()=>{
+
+    document.querySelector('.cancel').addEventListener('click', () => {
         window.location.reload()
+        failMessage.forEach(fail => {
+            if (fail != null) {
+                fail.style.display = "none"
+            }
+        })
     })
 
     let back = document.querySelector('.backBtn')

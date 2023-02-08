@@ -235,7 +235,7 @@
     border-radius: 1em;
     font-size: 1.5vh;
     animation-name: resize;
-    animation-duration: 2s;
+    animation-duration: .5s!important;
     animation-fill-mode: forwards;
     transition: all 1s;
 }
@@ -247,6 +247,8 @@
 }
 
 .clothingBackBtn{
+    margin-bottom: 3vh;
+    scale: 0;
     position: relative;
     margin-top: 5vh;
     bottom: 0;
@@ -259,7 +261,8 @@
     border-radius: 1em;
     font-size: 1.5vh;
     animation-name: resize;
-    animation-duration: 2s;
+    animation-duration: .5s;
+    animation-delay: 1.5s;
     animation-fill-mode: forwards;
     transition: all 1s;
 }

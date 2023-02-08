@@ -73,13 +73,17 @@ public class PortalController {
     }
 
     @PostMapping("/employee/create")
-    public String createEmployee(String username, String password, String role, String confirm) {
+    public String createEmployee(String username, String password, String role, String confirm, Model model) {
+        boolean created = false;
+
         System.out.println(username);
         System.out.println(password);
         System.out.println(role);
-        if (!username.equals("") && !password.equals("") && role.equals("EMPLOYEE") && password.equals(confirm)) {
+        if (!username.equalsIgnoreCase("admin") && !username.equals("") && !password.equals("") && role.equals("EMPLOYEE") && password.equals(confirm)) {
             employeeRoster.save(new Employee(username, encoder.encode(password), role));
-            return "redirect:/";
+            created = true;
+            model.addAttribute("createdEmployee", created);
+            return "/employees/employee-manager";
         } else {
             return "redirect:/employee/create";
         }
@@ -103,23 +107,60 @@ public class PortalController {
         return "/employees/individual-employee";
     }
 
-    @PostMapping("/employee/update-password")
-    public String updateEmployee(String id, String password, String confirm, Model model){
+    @GetMapping("/employee/update-password")
+    public String updateEmployeeHTML(String id, Model model){
         Employee employee = employeeRoster.getReferenceById(Long.parseLong(id));
         String c = employee.getUsername().substring(0,1);
         String cc = employee.getUsername().substring(1);
         String name = c.toUpperCase() + cc.toLowerCase();
         model.addAttribute("name", name);
         model.addAttribute("employee", employee);
+        return "/employees/individual-employee";
+    }
 
+    @PostMapping("/employee/update-password")
+    public String updateEmployee(String id, String password, String confirm, Model model){
+        boolean updated;
+        boolean empty = false;
+        boolean doesntMatch = false;
+        Employee employee = employeeRoster.getReferenceById(Long.parseLong(id));
+        String c = employee.getUsername().substring(0,1);
+        String cc = employee.getUsername().substring(1);
+        String name = c.toUpperCase() + cc.toLowerCase();
+        model.addAttribute("name", name);
+        model.addAttribute("employee", employee);
+//Todo: NEED TO ADD ERROR HANDLING MESSAGE TO THE UPDATE PASSWORD FORM
+
+        if (password.equals("") || confirm.equals("")) {
+            empty = true;
+        }
+        if (!password.equals(confirm)) {
+            doesntMatch = true;
+        }
+        model.addAttribute("emptyBox", empty);
+        model.addAttribute("doesntMatch", doesntMatch);
         if (password.equals(confirm) && !password.equals("")) {
             employeeRoster.updatePassword(encoder.encode(password), Long.parseLong(id));
+            updated = true;
+            model.addAttribute("updated", updated);
             return "/employees/individual-employee";
         } else {
+            updated = false;
+            model.addAttribute("updated", updated);
             return "/employees/individual-employee";
         }
 
 
+    }
+
+    @PostMapping("/employee/delete")
+    public String deleteEmployee(String empID){
+        Employee employee = employeeRoster.getReferenceById(Long.parseLong(empID));
+        if (employee.getId() != 1 || !employee.getRole().equals("ADMIN")) {
+            employeeRoster.delete(employee);
+        }
+
+        return "redirect:/employee/view-all";
     }
 
     @GetMapping("/shop")
