@@ -13,7 +13,16 @@
         <h1 class="greeting">Employee Creation!</h1>
         <form class="mainForm" style="padding: 0!important; margin-top: 2vh!important;" th:action="@{/employee/create}"
               method="post">
-            <!--Todo: Need to make error messages-->
+            <div th:if="${namedAdmin == true}">
+                <h1 class="errorMessage">USERNAME CAN NOT BE CALLED ADMIN!</h1>
+            </div>
+            <div th:if="${userExists == true}">
+                <h1 class="errorMessage">USERNAME EXISTS!</h1>
+                <h1 style="color: lawngreen" class="errorMessage">TRY ADDING A NUMBER TO THE END.</h1>
+            </div>
+            <div th:if="${badPass == true}">
+                <h1 class="errorMessage">PASSWORDS DO NOT MATCH!</h1>
+            </div>
             <label for="username">Employee Username</label>
             <input id="username" type="text" name="username">
             <label for="password">Employee Password</label>

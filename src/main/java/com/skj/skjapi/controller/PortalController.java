@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class PortalController {
@@ -75,17 +74,35 @@ public class PortalController {
     @PostMapping("/employee/create")
     public String createEmployee(String username, String password, String role, String confirm, Model model) {
         boolean created = false;
-
+        boolean namedAdmin = false;
+        boolean userExists = false;
+        boolean badPass = false;
         System.out.println(username);
         System.out.println(password);
         System.out.println(role);
-        if (!username.equalsIgnoreCase("admin") && !username.equals("") && !password.equals("") && role.equals("EMPLOYEE") && password.equals(confirm)) {
+
+        if (!password.equals(confirm)) {
+            badPass = true;
+        }
+
+        if (username.equalsIgnoreCase("admin") && password.equals(confirm)) {
+            namedAdmin = true;
+        }
+
+        if (employeeRoster.findByUsername(username) != null && !username.equalsIgnoreCase("admin") && password.equals(confirm)) {
+            userExists = true;
+        }
+
+        if (!username.equalsIgnoreCase("admin") && !username.equals("") && !password.equals("") && role.equals("EMPLOYEE") && password.equals(confirm) && employeeRoster.findByUsername(username) == null) {
             employeeRoster.save(new Employee(username, encoder.encode(password), role));
             created = true;
             model.addAttribute("createdEmployee", created);
             return "/employees/employee-manager";
         } else {
-            return "redirect:/employee/create";
+            model.addAttribute("badPass", badPass);
+            model.addAttribute("namedAdmin", namedAdmin);
+            model.addAttribute("userExists", userExists);
+            return "/employees/create-employee";
         }
 
     }
