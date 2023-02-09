@@ -13,7 +13,6 @@
         <h1 class="greeting">Employee Creation!</h1>
         <form class="mainForm" style="padding: 0!important; margin-top: 2vh!important;" th:action="@{/employee/create}"
               method="post">
-            <!--Todo: Need to make error messages-->
             <div th:if="${namedAdmin == true}">
                 <h1 class="errorMessage">USERNAME CAN NOT BE CALLED ADMIN!</h1>
             </div>
@@ -24,7 +23,7 @@
             <div th:if="${badPass == true}">
                 <h1 class="errorMessage">PASSWORDS DO NOT MATCH!</h1>
             </div>
-            <label style="margin-top: 1vh!important;" for="username">Employee Username</label>
+            <label for="username">Employee Username</label>
             <input id="username" type="text" name="username">
             <label for="password">Employee Password</label>
             <input id="password" type="password" name="password">
@@ -34,7 +33,7 @@
             <input id="role" type="text" name="role" value="EMPLOYEE" placeholder="enter EMPLOYEE">
             <button style="font-size: 3vh" type="submit">Create</button>
         </form>
-        <button style="margin-top: 5vh" class="backBtn" type="button">GO BACK</button>
+        <button style="margin-top: 5vh; animation-delay: 1s!important;" class="backBtn" type="button">GO BACK</button>
 
         <script>
             let back = document.querySelector('.backBtn')
