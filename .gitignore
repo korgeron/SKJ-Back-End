@@ -1,4 +1,6 @@
 src/main/resources/application.properties
-.DS_STORE
+.DS_STORE\
+.idea
 .idea/*
+*.xml
 target/*
