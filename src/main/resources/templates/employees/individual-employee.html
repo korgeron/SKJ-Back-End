@@ -70,6 +70,16 @@
         </div>
         <div class="content-panel">
             <div class="panels">
+                <div class="panels-info">
+                    <h3 class="info-title card-name">VIEW</h3>
+                    <h3 class="info-title card-name">PASSWORD</h3>
+                    <div style="display: flex">
+                        <i class="fa-regular fa-eye card-name"></i>
+                        <i style="margin-bottom: 1vh" class="fa-solid fa-eye card-name"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="panels">
                 <div th:if="${updated == true}">
                     <h1 style="color: lawngreen" class="card-name">UPDATED PASSWORD</h1>
                 </div>
@@ -87,7 +97,7 @@
                         <i class="fa-solid fa-ban card-name"></i>
                         <i class="fa-solid fa-ban card-name"></i>
                         <i class="fa-solid fa-ban card-name"></i>
-                        <i class="fa-solid fa-ban card-name"></i>
+                        <i style="margin-bottom: 1vh" class="fa-solid fa-ban card-name"></i>
                     </div>
                     <form id="deleteEmployee" th:action="@{/employee/delete}" th:method="post">
                         <input type="hidden" th:value="${employee.getId()}" name="empID">
@@ -104,9 +114,14 @@
 
     document.querySelectorAll('.panels').forEach((panel, i) => {
         panel.addEventListener('click', () => {
-            panel.style.background = "rgba(211, 211, 211, 0.9)"
+            // panel.style.background = "rgba(211, 211, 211, 0.9)"
             switch (true) {
                 case i === 0:
+                    panel.style.background = "rgba(211, 211, 211, 0.9)"
+
+                    break;
+                case i === 1:
+                    panel.style.background = "rgba(211, 211, 211, 0.9)"
                     failMessage.forEach(fail => {
                         if (fail != null) {
                             fail.style.display = "none"
@@ -125,7 +140,8 @@
                         panel.style.display = "none"
                     })
                     break;
-                case i === 1:
+                case i === 2:
+                    panel.style.background = "rgba(211, 211, 211, 0.9)"
                     document.querySelector('#deleteEmployee').submit()
                     break;
             }

@@ -31,7 +31,7 @@ public class SecurityConfiguration {
                         "/employee/create",
                         "employee/manager",
                         "/employee/view-all",
-                        "/employee/{id}",
+//                        "/employee/{id}",
                         "/employee/update-password"
                 )
                 .hasAnyAuthority("ADMIN")
