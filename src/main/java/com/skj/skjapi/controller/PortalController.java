@@ -36,12 +36,8 @@ public class PortalController {
     }
 
     @GetMapping("/login")
-    public String loginHTML(Model model) {
+    public String loginHTML() {
         List<Employee> employeeList = employeeRoster.findAll();
-//        List<Product> products = productsList.findAll();
-//        if (products.size() > 0){
-//            productsList.deleteAll();
-//        }
 
         if (employeeList.size() <= 0) {
             employeeRoster.save(new Employee("admin", encoder.encode("1q2w3e4r5t6y7u8i9o0p"), "ADMIN"));
@@ -148,7 +144,6 @@ public class PortalController {
         String name = c.toUpperCase() + cc.toLowerCase();
         model.addAttribute("name", name);
         model.addAttribute("employee", employee);
-//Todo: NEED TO ADD ERROR HANDLING MESSAGE TO THE UPDATE PASSWORD FORM
 
         if (password.equals("") || confirm.equals("")) {
             empty = true;
@@ -169,7 +164,6 @@ public class PortalController {
             return "/employees/individual-employee";
         }
 
-
     }
 
     @PostMapping("/employee/delete")
@@ -178,7 +172,6 @@ public class PortalController {
         if (employee.getId() != 1 || !employee.getRole().equals("ADMIN")) {
             employeeRoster.delete(employee);
         }
-
         return "redirect:/employee/view-all";
     }
 
@@ -189,7 +182,6 @@ public class PortalController {
 
     @GetMapping("/shop/all-products")
     public String allProductsHTML() {
-//        model.addAttribute("products", productsList.findAll());
         return "shop/all-products";
     }
 
@@ -214,7 +206,6 @@ public class PortalController {
     public String addClothing(Model model, String name,  String size, String category, String price, String color, String photo) {
 
         System.out.println(photo);
-
 
         boolean wasAdded = false;
         boolean photoIssue = false;
@@ -251,20 +242,6 @@ public class PortalController {
     @PostMapping("/shop/add-equipment")
     public String addEquipment(Model model, String name, String size, String category, String price, String color, String photo) {
 
-//        boolean wasAdded = false;
-//        //Todo: SET UP GREEN MESSAGE FOR SUCCESS HERE + ERROR HANDLING FOR FAILURES
-//        if (!category.equals("") && !name.equals("") && !size.equals("") && !price.equals("$") && !color.equals("") && !photo.equals("")) {
-//            productsList.save(new Product(category, name, size, color, price, photo));
-//            wasAdded = true;
-//            model.addAttribute("equipAdded", wasAdded);
-//            return "/shop/index";
-//        } else {
-//            model.addAttribute("error", true);
-//            return "shop/add-clothing";
-//        }
-
-
-
         boolean wasAdded = false;
         boolean photoIssue = false;
         boolean basicError = false;
@@ -286,7 +263,6 @@ public class PortalController {
             model.addAttribute("photoIssue", photoIssue);
             return "shop/add-equipment";
         }
-//
     }
 
 
