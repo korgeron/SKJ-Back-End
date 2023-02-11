@@ -5,10 +5,15 @@
 
 
 <div class="page">
+
     <div class="loginContent">
         <form class="mainForm" th:action="@{/login}" method="post">
             <div th:if="${notEmployee == true}">
                 <h1 class="errorMessage">username or password incorrect!</h1>
+            </div>
+            <div th:if="${contactMe == true}">
+                <div class="errorMessage">PHOTO ISSUE: </div>
+                <div style="color:lawngreen " class="errorMessage">CONTACT KEVIN :)</div>
             </div>
             <label for="username">USERNAME</label>
             <input id="username" type="text" name="username" autofocus>

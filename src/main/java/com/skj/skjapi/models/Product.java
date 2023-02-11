@@ -25,15 +25,19 @@ public class Product {
     @Column
     private String price;
 
+    @Column
+    private String photo;
+
     public Product() {
     }
 
-    public Product(String category, String name, String size, String color, String price) {
+    public Product(String category, String name, String size, String color, String price, String photo) {
         this.category = category;
         this.name = name;
         this.size = size;
         this.color = color;
         this.price = price;
+        this.photo = photo;
     }
 
     public Long getId() {
@@ -82,5 +86,13 @@ public class Product {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

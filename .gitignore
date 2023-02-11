@@ -4,3 +4,4 @@ src/main/resources/application.properties
 .idea/*
 *.xml
 target/*
+src/main/resources/static/js/keys.js

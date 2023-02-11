@@ -29,7 +29,7 @@
 
 /*Todo: CONTENT PANEL*/
 .content-panel {
-    padding: 1em;
+    /*padding: 1em;*/
     visibility: hidden;
     overflow-y: scroll;
     scroll-behavior: smooth;

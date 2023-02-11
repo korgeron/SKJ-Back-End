@@ -16,6 +16,9 @@
             </div>
 
             <div class="panels">
+                <div th:if="${clothAdded == true}">
+                    <h1 style="color: lawngreen; margin-bottom: 1vh" class="card-name">CLOTHING ADDED</h1>
+                </div>
                 <div class="panels-info">
                     <h3 class="info-title">ADD CLOTHING</h3>
                     <i class="fa-solid fa-shirt fa-6x"></i>
@@ -23,6 +26,9 @@
             </div>
 
             <div class="panels">
+                <div th:if="${equipAdded == true}">
+                    <h1 style="color: lawngreen; margin-bottom: 1vh" class="card-name">EQUIPMENT ADDED</h1>
+                </div>
                 <div class="panels-info">
                     <h3 class="info-title">ADD EQUIPMENT</h3>
                     <i class="fa-solid fa-dumbbell fa-6x"></i>

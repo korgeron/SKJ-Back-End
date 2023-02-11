@@ -36,12 +36,13 @@ public class PortalController {
     }
 
     @GetMapping("/login")
-    public String loginHTML() {
+    public String loginHTML(Model model) {
         List<Employee> employeeList = employeeRoster.findAll();
 //        List<Product> products = productsList.findAll();
 //        if (products.size() > 0){
 //            productsList.deleteAll();
 //        }
+
         if (employeeList.size() <= 0) {
             employeeRoster.save(new Employee("admin", encoder.encode("1q2w3e4r5t6y7u8i9o0p"), "ADMIN"));
         }
@@ -55,6 +56,7 @@ public class PortalController {
         return "login";
     }
 
+
     @GetMapping("/logout")
     public String logoutHandler(HttpSession session) {
         session.invalidate();
@@ -62,7 +64,7 @@ public class PortalController {
     }
 
     @GetMapping("/employee/manager")
-    public String employeeManagerHTML(){
+    public String employeeManagerHTML() {
         return "employees/employee-manager";
     }
 
@@ -108,15 +110,15 @@ public class PortalController {
     }
 
     @GetMapping("/employee/view-all")
-    public String viewEmployeeHTML(Model model){
-        model.addAttribute("employees",employeeRoster.findAll());
+    public String viewEmployeeHTML(Model model) {
+        model.addAttribute("employees", employeeRoster.findAll());
         return "employees/view-employees";
     }
 
     @GetMapping("/employee/{id}")
-    public String individualEmployeePage(@PathVariable String id, Model model){
+    public String individualEmployeePage(@PathVariable String id, Model model) {
         Employee employee = employeeRoster.getReferenceById(Long.parseLong(id));
-        String c = employee.getUsername().substring(0,1);
+        String c = employee.getUsername().substring(0, 1);
         String cc = employee.getUsername().substring(1);
         String name = c.toUpperCase() + cc.toLowerCase();
         model.addAttribute("name", name);
@@ -125,9 +127,9 @@ public class PortalController {
     }
 
     @GetMapping("/employee/update-password")
-    public String updateEmployeeHTML(String id, Model model){
+    public String updateEmployeeHTML(String id, Model model) {
         Employee employee = employeeRoster.getReferenceById(Long.parseLong(id));
-        String c = employee.getUsername().substring(0,1);
+        String c = employee.getUsername().substring(0, 1);
         String cc = employee.getUsername().substring(1);
         String name = c.toUpperCase() + cc.toLowerCase();
         model.addAttribute("name", name);
@@ -136,12 +138,12 @@ public class PortalController {
     }
 
     @PostMapping("/employee/update-password")
-    public String updateEmployee(String id, String password, String confirm, Model model){
+    public String updateEmployee(String id, String password, String confirm, Model model) {
         boolean updated;
         boolean empty = false;
         boolean doesntMatch = false;
         Employee employee = employeeRoster.getReferenceById(Long.parseLong(id));
-        String c = employee.getUsername().substring(0,1);
+        String c = employee.getUsername().substring(0, 1);
         String cc = employee.getUsername().substring(1);
         String name = c.toUpperCase() + cc.toLowerCase();
         model.addAttribute("name", name);
@@ -171,7 +173,7 @@ public class PortalController {
     }
 
     @PostMapping("/employee/delete")
-    public String deleteEmployee(String empID){
+    public String deleteEmployee(String empID) {
         Employee employee = employeeRoster.getReferenceById(Long.parseLong(empID));
         if (employee.getId() != 1 || !employee.getRole().equals("ADMIN")) {
             employeeRoster.delete(employee);
@@ -198,7 +200,7 @@ public class PortalController {
     }
 
     @GetMapping("/shop/equipment-page")
-    public String equipmentPageHTML(Model model){
+    public String equipmentPageHTML(Model model) {
         model.addAttribute("products", productsList.findAll());
         return "shop/equipment-page";
     }
@@ -209,14 +211,34 @@ public class PortalController {
     }
 
     @PostMapping("/shop/add-clothing")
-    public String addClothing(Model model, @RequestParam(name = "name") String name, @RequestParam(name = "size") String size, @RequestParam(name = "category") String category, @RequestParam(name = "price") String price, @RequestParam(name = "color") String color) {
+    public String addClothing(Model model, String name,  String size, String category, String price, String color, String photo) {
 
-        if (!category.equals("") && !name.equals("") && !size.equals("") && !price.equals("$") && !color.equals("")){
-            productsList.save(new Product(category, name, size, color, price));
-            return "redirect:/shop/all-products";
+        System.out.println(photo);
+
+
+        boolean wasAdded = false;
+        boolean photoIssue = false;
+        boolean basicError = false;
+
+        if (photo == null ) {
+            model.addAttribute("contactMe", true);
+            return "/login";
         }
-        else{
-            model.addAttribute("error", true);
+
+        if (photo.equals("")) {
+            System.out.println("Photo = "+ photo);
+            photoIssue = true;
+        }
+        if (category.equals("") || name.equals("") || size.equals("") || price.equals("$") || color.equals("") && !photoIssue) basicError = true;
+
+        if (!category.equals("") && !name.equals("") && !size.equals("") && !price.equals("$") && !color.equals("") && !photo.equals("")) {
+            productsList.save(new Product(category, name, size, color, price, photo));
+            wasAdded = true;
+            model.addAttribute("clothAdded", wasAdded);
+            return "/shop/index";
+        } else {
+            model.addAttribute("error", basicError);
+            model.addAttribute("photoIssue", photoIssue);
             return "shop/add-clothing";
         }
     }
@@ -227,17 +249,44 @@ public class PortalController {
     }
 
     @PostMapping("/shop/add-equipment")
-    public String addEquipment(Model model, @RequestParam(name = "name") String name, @RequestParam(name = "size") String size, @RequestParam(name = "category") String category, @RequestParam(name = "price") String price, @RequestParam(name = "color") String color){
+    public String addEquipment(Model model, @RequestParam(name = "name") String name, @RequestParam(name = "size") String size, @RequestParam(name = "category") String category, @RequestParam(name = "price") String price, @RequestParam(name = "color") String color, @RequestParam(name = "photo") String photo) {
 
-        if (!category.equals("") && !name.equals("") && !size.equals("") && !price.equals("$") && !color.equals("")){
-            productsList.save(new Product(category, name, size, color, price));
-            return "redirect:/shop/all-products";
-        }
-        else{
-            model.addAttribute("error", true);
-            return "shop/add-clothing";
+//        boolean wasAdded = false;
+//        //Todo: SET UP GREEN MESSAGE FOR SUCCESS HERE + ERROR HANDLING FOR FAILURES
+//        if (!category.equals("") && !name.equals("") && !size.equals("") && !price.equals("$") && !color.equals("") && !photo.equals("")) {
+//            productsList.save(new Product(category, name, size, color, price, photo));
+//            wasAdded = true;
+//            model.addAttribute("equipAdded", wasAdded);
+//            return "/shop/index";
+//        } else {
+//            model.addAttribute("error", true);
+//            return "shop/add-clothing";
+//        }
+
+
+
+        boolean wasAdded = false;
+        boolean photoIssue = false;
+        boolean basicError = false;
+
+        if (photo == null) {
+            System.out.println("Photo = "+ photo);
+            photoIssue = true;
         }
 
+        if (category.equals("") || name.equals("") || size.equals("") || price.equals("$") || color.equals("") && !photoIssue) basicError = true;
+
+        if (!category.equals("") && !name.equals("") && !size.equals("") && !price.equals("$") && !color.equals("") && photo != null) {
+            productsList.save(new Product(category, name, size, color, price, photo));
+            wasAdded = true;
+            model.addAttribute("clothAdded", wasAdded);
+            return "/shop/index";
+        } else {
+            model.addAttribute("error", basicError);
+            model.addAttribute("photoIssue", photoIssue);
+            return "shop/add-equipment";
+        }
+//
     }
 
 
