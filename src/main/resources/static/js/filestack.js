@@ -9,7 +9,7 @@ const options = {
     onFileUploadFinished(file) {
         console.log(file)
         // document.querySelector('.subForm').innerHTML += `<input type="hidden" th:value="${file.url}" th:name="photo" />`;
-        document.querySelector('#test').value = file.url
+        document.querySelector('#photo').value = file.url
         document.querySelector('.subForm').submit();
     }
 }

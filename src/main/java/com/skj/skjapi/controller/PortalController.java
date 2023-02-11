@@ -249,7 +249,7 @@ public class PortalController {
     }
 
     @PostMapping("/shop/add-equipment")
-    public String addEquipment(Model model, @RequestParam(name = "name") String name, @RequestParam(name = "size") String size, @RequestParam(name = "category") String category, @RequestParam(name = "price") String price, @RequestParam(name = "color") String color, @RequestParam(name = "photo") String photo) {
+    public String addEquipment(Model model, String name, String size, String category, String price, String color, String photo) {
 
 //        boolean wasAdded = false;
 //        //Todo: SET UP GREEN MESSAGE FOR SUCCESS HERE + ERROR HANDLING FOR FAILURES
