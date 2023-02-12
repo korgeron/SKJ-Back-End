@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -114,6 +116,7 @@ public class PortalController {
     @GetMapping("/employee/{id}")
     public String individualEmployeePage(@PathVariable String id, Model model) {
         Employee employee = employeeRoster.getReferenceById(Long.parseLong(id));
+
         String c = employee.getUsername().substring(0, 1);
         String cc = employee.getUsername().substring(1);
         String name = c.toUpperCase() + cc.toLowerCase();

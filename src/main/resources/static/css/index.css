@@ -168,8 +168,8 @@
     justify-content: flex-start;
     align-items: center;
     background: rgba(119, 136, 153, 0.31);
-    border-radius: 1em;
     border: 1px inset rgba(205, 92, 92, 0.49);
+    border-radius: 1em;
     animation-name: resize;
     /*2s*/
     animation-duration: 1s;
@@ -442,6 +442,59 @@
 /*}*/
 
 
+.viewPass{
+    max-height: 30vh;
+    max-width: 75vw;
+    margin: 25vh 0 25vh 0;
+    /*!*position: relative;*!*/
+    /*!*left: 0;*!*/
+    /*!*right: 0;*!*/
+    border-radius: 1em;
+    background: rgba(119, 136, 153, 0.31);
+    border: 1px inset rgba(205, 92, 92, 0.49);
+    display: none;
+    animation-name: open;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+    transition: 1s all;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.pass-info{
+    scale: 0;
+    font-size: 40px;
+    animation-name: resize;
+    animation-duration: 1s;
+    animation-delay: .5s;
+    animation-fill-mode: forwards;
+    transition: 1s all;
+    text-align: center;
+}
+
+.pop-button > button{
+    width: 25vw;
+    scale: 0;
+    animation-name: resize;
+    animation-duration: 1s;
+    animation-delay: .5s;
+    animation-fill-mode: forwards;
+    transition: 1s all;
+    margin-top: 2vh;
+    height: 5vh;
+    color: black;
+    font-size: 3vh;
+    margin-bottom: 2vh;
+}
+
+.pop-button > button:hover{
+    cursor: pointer;
+    background: rgba(211, 211, 211, 0.75);
+    color: black;
+    border: 1px solid #00b0ff;
+}
+
 /*ANIMATION*/
 @keyframes titlesizer {
     from{
@@ -512,5 +565,4 @@
         height: 20vh;
         width: 80vw;
     }
-
 }

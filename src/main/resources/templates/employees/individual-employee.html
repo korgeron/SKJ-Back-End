@@ -57,6 +57,13 @@
 </div>
 <div class="page">
     <div class="content">
+        <div class="viewPass">
+            <h3 class="pass-info" th:text="${'ARE YOU SURE YOU WANT TO DELETE ' + employee.getUsername().toUpperCase() + '?'}"></h3>
+            <div class="pop-button" style="display: flex">
+                <button class="no" style="background: indianred" type="button">NO</button>
+                <button class="yes" type="button">YES</button>
+            </div>
+        </div>
         <button class="logoutBtn" type="button">Logout</button>
         <h1 class="greeting" th:text="${name}+'\'s' + ' Profile'"></h1>
         <div th:if="${updated == false}">
@@ -69,16 +76,16 @@
             <h1 class="errorMessage">PASSWORD CONFIRMATION DID NOT MATCH!</h1>
         </div>
         <div class="content-panel">
-            <div class="panels">
-                <div class="panels-info">
-                    <h3 class="info-title card-name">VIEW</h3>
-                    <h3 class="info-title card-name">PASSWORD</h3>
-                    <div style="display: flex">
-                        <i class="fa-regular fa-eye card-name"></i>
-                        <i style="margin-bottom: 1vh" class="fa-solid fa-eye card-name"></i>
-                    </div>
-                </div>
-            </div>
+<!--            <div class="panels">-->
+<!--                <div class="panels-info">-->
+<!--                    <h3 class="info-title card-name">VIEW</h3>-->
+<!--                    <h3 class="info-title card-name">PASSWORD</h3>-->
+<!--                    <div style="display: flex">-->
+<!--                        <i class="fa-regular fa-eye card-name"></i>-->
+<!--                        <i style="margin-bottom: 1vh" class="fa-solid fa-eye card-name"></i>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="panels">
                 <div th:if="${updated == true}">
                     <h1 style="color: lawngreen" class="card-name">UPDATED PASSWORD</h1>
@@ -116,11 +123,22 @@
         panel.addEventListener('click', () => {
             // panel.style.background = "rgba(211, 211, 211, 0.9)"
             switch (true) {
+                // case i === 0:
+                //     panel.style.background = "rgba(211, 211, 211, 0.9)"
+                //     document.querySelector('.logoutBtn').style.display = "none"
+                //     document.querySelectorAll('.info-title').forEach((title) => {
+                //         title.style.display = "none"
+                //     })
+                //     document.querySelector('.backBtn').style.display = "none"
+                //     document.querySelector('.greeting').style.display = "none"
+                //
+                //     document.querySelector('.content-panel').style.display = "none"
+                //     document.querySelectorAll('.panels').forEach((panel) => {
+                //         panel.style.display = "none"
+                //     })
+                //     document.querySelector('.viewPass').style.display = "flex"
+                //     break;
                 case i === 0:
-                    panel.style.background = "rgba(211, 211, 211, 0.9)"
-
-                    break;
-                case i === 1:
                     panel.style.background = "rgba(211, 211, 211, 0.9)"
                     failMessage.forEach(fail => {
                         if (fail != null) {
@@ -140,9 +158,28 @@
                         panel.style.display = "none"
                     })
                     break;
-                case i === 2:
+                case i === 1:
                     panel.style.background = "rgba(211, 211, 211, 0.9)"
-                    document.querySelector('#deleteEmployee').submit()
+
+                        document.querySelector('.logoutBtn').style.display = "none"
+                        document.querySelectorAll('.info-title').forEach((title) => {
+                            title.style.display = "none"
+                        })
+                        document.querySelector('.backBtn').style.display = "none"
+                        document.querySelector('.greeting').style.display = "none"
+
+                        document.querySelector('.content-panel').style.display = "none"
+                        document.querySelectorAll('.panels').forEach((panel) => {
+                            panel.style.display = "none"
+                        })
+                        document.querySelector('.viewPass').style.display = "flex"
+
+                    document.querySelector('.yes').addEventListener('click', ()=>{
+                        document.querySelector('#deleteEmployee').submit()
+                    })
+                    document.querySelector('.no').addEventListener('click', ()=>{
+                        window.location.reload()
+                    })
                     break;
             }
         })

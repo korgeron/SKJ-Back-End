@@ -6,8 +6,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -31,7 +33,7 @@ public class SecurityConfiguration {
                         "/employee/create",
                         "employee/manager",
                         "/employee/view-all",
-//                        "/employee/{id}",
+                        "/employee/{id}",
                         "/employee/update-password"
                 )
                 .hasAnyAuthority("ADMIN")
