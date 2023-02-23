@@ -5,6 +5,7 @@ import com.skj.skjapi.models.EmployeePermissions;
 import com.skj.skjapi.models.Product;
 import com.skj.skjapi.repos.Employees;
 import com.skj.skjapi.repos.Products;
+import com.skj.skjapi.services.EmailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
@@ -29,6 +32,9 @@ public class PortalController {
     @Autowired
     private PasswordEncoder encoder;
 
+    @Autowired
+    private EmailSenderService email;
+
     @GetMapping("/")
     public String landingHTML(Model model) {
         EmployeePermissions employee = (EmployeePermissions) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -41,8 +47,23 @@ public class PortalController {
     public String loginHTML() {
         List<Employee> employeeList = employeeRoster.findAll();
 
-        if (employeeList.size() <= 0) {
-            employeeRoster.save(new Employee("admin", encoder.encode("1q2w3e4r5t6y7u8i9o0p"), "ADMIN"));
+        List<String> alph = Arrays.asList("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z");
+        List<String> nums = Arrays.asList("1","2","3","4","5","6","7","8","9","0");
+
+        StringBuilder password = new StringBuilder();
+
+        if (employeeRoster.findByUsername("admin") == null) {
+            while (password.length() < 20) {
+                int randomAlph = (int) Math.floor(Math.random() * alph.size());
+                int randomNums = (int) Math.floor(Math.random() * nums.size());
+                password.append(alph.get(randomAlph)).append(nums.get(randomNums));
+            }
+        }
+        System.out.println(password);
+
+        if (employeeList.size() <= 0 && password.length() == 20) {
+            email.sendAdminMail(String.valueOf(password));
+            employeeRoster.save(new Employee("admin", encoder.encode(String.valueOf(password)), "ADMIN"));
         }
         return "login";
     }

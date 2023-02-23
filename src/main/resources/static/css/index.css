@@ -50,6 +50,11 @@
     justify-content: center;
 }
 
+/*TODO: NEED TO TEST ADDING MORE PANELS THEN 3.... CONTENT DISPLAYS ALL PANELS RESULTING IN NO SCROLL BEHAVIOR*/
+.content-panel::-webkit-scrollbar{
+    display: none;
+}
+
 /*Todo: Individual Panels*/
 .panels {
     height: 30%;
